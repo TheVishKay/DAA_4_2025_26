@@ -1,0 +1,47 @@
+Algorithm: Distinct Subsequences
+
+Let s be the source string of length m and t be the target string of length n.
+Create a DP array dp of size (n + 1) initialized with 0.
+Set dp[0] = 1 because an empty string t can always be formed from any prefix of s.
+Traverse through string s from index 1 to m:
+For each character in s, traverse string t from index n to 1 (backwards):
+If s[i-1] == t[j-1], then update:
+dp[j] = dp[j] + dp[j-1]
+After completing all iterations, the answer is stored in dp[n].
+
+Time Complexity:
+O(m × n)
+Where m is the length of string s and n is the length of string t.
+
+Space Complexity:
+O(n)
+Only a 1D DP array of size n + 1 is used.
+
+Dry Run:
+
+Input:
+s = "babgbag"
+t = "bag"
+
+Initialize:
+dp = [1, 0, 0, 0]
+
+Step-by-step:
+
+s[0] = 'b'
+dp → [1, 1, 0, 0]
+s[1] = 'a'
+dp → [1, 1, 1, 0]
+s[2] = 'b'
+dp → [1, 2, 1, 0]
+s[3] = 'g'
+dp → [1, 2, 1, 1]
+s[4] = 'b'
+dp → [1, 3, 1, 1]
+s[5] = 'a'
+dp → [1, 3, 4, 1]
+s[6] = 'g'
+dp → [1, 3, 4, 5]
+
+Final Answer:
+dp[3] = 5
